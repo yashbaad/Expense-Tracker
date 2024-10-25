@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yashbaad.expensetracker.entity.Expense;
 import com.yashbaad.expensetracker.service.ExpenseServiceImpl;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/expense")
@@ -31,4 +32,10 @@ public class expenseController {
         Expense savedExpense = expenseService.addExpense(expense);
         return new ResponseEntity<>(savedExpense, HttpStatus.CREATED);
     }
+
+    @GetMapping("/by-category")
+    public List<Expense> getMethodName(@RequestParam String category) {
+        return expenseService.findByCategory(category);
+    }
+
 }

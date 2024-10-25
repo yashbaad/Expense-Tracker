@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 import com.yashbaad.expensetracker.dao.ExpenseRepository;
 import com.yashbaad.expensetracker.entity.Expense;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+
 @Service
 public class ExpenseServiceImpl {
+
+    private EntityManager entityManager;
 
     @Autowired
     private ExpenseRepository expenseRpository;
@@ -20,6 +25,10 @@ public class ExpenseServiceImpl {
 
     public Expense addExpense(Expense expense) {
         return expenseRpository.save(expense);
+    }
+
+    public List<Expense> findByCategory(String category) {
+        return expenseRpository.findByCategory(category);
     }
 
 }
